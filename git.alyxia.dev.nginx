@@ -1,31 +1,36 @@
+# The config for the damn thing you're looking at. Quite meta, huh?
+
 server {
   listen 80;
   listen [::]:80;
   server_name git.alyxia.dev;
 
-  # add_header X-Frame-Options "SAMEORIGIN";
-  # add_header X-Content-Type-Options "nosniff";
-
   location / {
     proxy_pass http://localhost:3722;
+
+    # Make GitLab think it is running on `git.alyxia.dev` and not `localhost`.
     proxy_set_header Host $host;
-    # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    # proxy_set_header X-NginX-Proxy true;
-    # proxy_ssl_session_reuse off;
-    # proxy_set_header Host $http_host;
-    # proxy_redirect off;
   }
 
   location /users/sign_in {
     proxy_pass http://localhost:3722/users/sign_in;
 
-    sub_filter '<img class="brand-header-logo' '<img title="He watches." class="brand-header-logo';
+    # Response body modifications {{{
+      # Okay, so this is goddamn fun to play with. You can basically modify
+      # literally any part of the response body with whatever you want.
+      # <http://nginx.org/en/docs/http/ngx_http_sub_module.html>
 
-    sub_filter '<h1 class="mb-3 font-weight-normal">
-GitLab' '<h1 class="mb-3 font-weight-normal">DogeInGlasses';
+      # Adds a hover to the header image
+      sub_filter '<img class="brand-header-logo' '<img title="He watches." class="brand-header-logo';
 
-    sub_filter '<p>
+      # Replaces "GitLab" with "DogeInGlases" on the sign-in screen.
+      sub_filter '<h1 class="mb-3 font-weight-normal">
+  GitLab' '<h1 class="mb-3 font-weight-normal">DogeInGlasses';
+
+      # Replaces the whole explanation about "what is GitLab" with a funny gif.
+      sub_filter '<p>
 GitLab is a single application for the entire software development lifecycle. From project planning and source code management to CI/CD, monitoring, and security.
 </p>' '<img src="https://public.alyxia.dev/okay.gif" />';
+    # }}}
   }
 }
