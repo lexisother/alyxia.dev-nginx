@@ -1,3 +1,4 @@
+# Application for syncing your CrossCode save across devices.
 server {
   listen 80;
   listen [::]:80;

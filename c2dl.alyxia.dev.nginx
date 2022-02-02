@@ -1,3 +1,4 @@
+# Development instance of <https://c2dl.info/>.
 server {
   listen 80;
   listen [::]:80;

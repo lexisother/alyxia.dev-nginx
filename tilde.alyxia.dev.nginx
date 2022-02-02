@@ -1,3 +1,4 @@
+# The site I wrote for tilde.club. My very first Laravel project.
 server {
   listen 80;
   listen [::]:80;

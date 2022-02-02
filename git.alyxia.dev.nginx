@@ -1,5 +1,4 @@
 # The config for the damn thing you're looking at. Quite meta, huh?
-
 server {
   listen 80;
   listen [::]:80;

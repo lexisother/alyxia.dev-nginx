@@ -1,3 +1,4 @@
+# The public directory.
 server {
   listen 80;
   listen [::]:80;
@@ -6,22 +7,27 @@ server {
 
   root /home/lexisother/public_web;
 
+  # / goes to my directory.
   location / {
     autoindex on;
     autoindex_exact_size on;
   }
 
+  # /~username goes to someone else's directory.
   location ~ ^/~(.+?)(/.*)?$ {
       alias /home/$1/public_web$2;
       autoindex on;
   }
 
+  # /__json__ shows the directory listing in JSON format.
   location ~ ^/__json__/~(.+?)(/.*)?$ {
       alias /home/$1/public_web$2;
       autoindex on;
       autoindex_format json;
   }
 
+  # I don't know why this is here.
+  # TODO: Remove any references and reroute them to /~linker.
   location /linker {
     alias /home/linker/public_web;
     autoindex on;

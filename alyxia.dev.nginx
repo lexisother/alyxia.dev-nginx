@@ -1,3 +1,4 @@
+# The house of greatness. Central home of all.
 server {
         listen 80;
         listen [::]:80;

@@ -1,3 +1,5 @@
+# Instance of TTYD.
+# USE IN EMERGENCIES!!!
 server {
   listen 80;
   listen [::]:80;

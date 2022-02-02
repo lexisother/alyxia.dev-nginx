@@ -1,3 +1,4 @@
+# Development instance of intranet site: <https://github.com/lexisother/GDOS-Website-PHP>
 server {
   listen 80;
   listen [::]:80;

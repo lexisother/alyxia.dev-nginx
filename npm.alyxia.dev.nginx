@@ -1,4 +1,4 @@
-
+# Private NPM registry for packages I don't want publicised.
 server {
   listen 80;
   listen [::]:80;

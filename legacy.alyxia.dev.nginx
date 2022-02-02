@@ -1,3 +1,4 @@
+# "Treat each other with care. Treat each other with respect."
 server {
   listen 80;
   listen [::]:80;
