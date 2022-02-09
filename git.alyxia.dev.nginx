@@ -5,14 +5,14 @@ server {
   server_name git.alyxia.dev;
 
   location / {
-    proxy_pass http://localhost:3722;
+    proxy_pass http://192.168.1.5:3722;
 
     # Make GitLab think it is running on `git.alyxia.dev` and not `localhost`.
     proxy_set_header Host $host;
   }
 
   location /users/sign_in {
-    proxy_pass http://localhost:3722/users/sign_in;
+    proxy_pass http://192.168.1.5:3722;
 
     # Response body modifications {{{
       # Okay, so this is goddamn fun to play with. You can basically modify
