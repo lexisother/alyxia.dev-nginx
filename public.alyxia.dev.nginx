@@ -13,6 +13,14 @@ server {
     autoindex_exact_size on;
   }
 
+  # /*.php runs PHP scripts.
+  location ~ \.php$ {
+    fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
+    fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+    include fastcgi_params;
+    include snippets/fastcgi-php.conf;
+  }
+
   # /~username goes to someone else's directory.
   location ~ ^/~(.+?)(/.*)?$ {
       alias /home/$1/public_web$2;
