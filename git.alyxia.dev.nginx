@@ -24,7 +24,7 @@ server {
 
       # Replaces "GitLab" with "DogeInGlases" on the sign-in screen.
       sub_filter '<h1 class="mb-3 font-weight-normal">
-  GitLab' '<h1 class="mb-3 font-weight-normal">DogeInGlasses';
+GitLab' '<h1 class="mb-3 font-weight-normal">DogeInGlasses';
 
       # Replaces the whole explanation about "what is GitLab" with a funny gif.
       sub_filter '<p>
