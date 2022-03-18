@@ -5,7 +5,7 @@ server {
 
         server_name *.alyxia.dev alyxia.dev;
 
-        root /home/lexisother/Documents/gitrepos/lexisother.tk/public;
+        root /home/alyxia/Documents/gitrepos/lexisother.tk/public;
 
 	index index.html;
 }
