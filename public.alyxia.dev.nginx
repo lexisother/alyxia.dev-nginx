@@ -34,6 +34,7 @@ server {
   location ~ ^/~(.+?)/private(/.*)?$ {
     alias /home/$1/public_web/private$2;
     autoindex on;
+    autoindex_exact_size on;
     auth_basic "$1 is hiding something from you.";
     auth_basic_user_file /etc/nginx/$1-pass;
   }
@@ -42,27 +43,19 @@ server {
   location ~ ^/~(.+?)(/.*)?$ {
     alias /home/$1/public_web$2;
     autoindex on;
+    autoindex_exact_size on;
   }
 
   # /__json__ shows the directory listing in JSON format.
   location ~ ^/__json__/~(.+?)(/.*)?$ {
-      alias /home/$1/public_web$2;
-      autoindex on;
-      autoindex_format json;
-  }
-
-  # I don't know why this is here.
-  # TODO: Remove any references and reroute them to /~linker.
-  location /linker {
-    alias /home/linker/public_web;
+    alias /home/$1/public_web$2;
     autoindex on;
     autoindex_exact_size on;
+    autoindex_format json;
+  }
 
-    location /linker/export {
-      alias /home/linker/export;
-      autoindex on;
-      auth_basic "Login";
-      auth_basic_user_file /etc/nginx/linkerpass;
-    }
+  # Legacy, kept for backwards compatability.
+  location /linker {
+    rewrite ^/linker(.*)$ /~linker$1 permanent;
   }
 }
